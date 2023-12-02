@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: black;
+            color: white;
+            height: 500px;
+        }
+
+        .acc-items {
+            border: 3px solid black;
+            padding: 20px;
+            text-align: center;
+            margin: 10px;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .acc-content {
+            display: none;
+            color: blue;
+            padding: 10px;
+            color: burlywood;
+
+        }
+
+        .highlight {
+            background-color: yellow;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="acc-items" onclick="fun('one',this)">Accordion-1</div>
+        <div class="acc-content" id="one">Content for Accordion-1</div>
+
+        <div class="acc-items" onclick="fun('two',this)">Accordion-2</div>
+        <div class="acc-content" id="two">Content for Accordion-2</div>
+
+        <div class="acc-items" onclick="fun('three',this)">Accordion-3</div>
+        <div class="acc-content" id="three">Content for Accordion-3</div>
+    </div>
+    <script>
+
+        function fun(id, item) {
+            let content = document.getElementById(id);
+            let acc_item = document.getElementsByClassName("acc-items")
+            let acc_content = document.getElementsByClassName("acc-content");
+
+            for (let i = 0; i < acc_content.length; i++) {
+                if (acc_content[i] !== item)
+                    acc_content[i].style.display = "none"
+
+            }
+    
+            if (content.style.display === "block")
+                content.style.display = "none"
+            else {
+                content.style.display = "block"
+
+                for (let j = 0; j < acc_item.length; j++)
+                    acc_item[j].classList.remove("highlight")
+
+
+                item.classList.add("highlight")
+
+            }
+        }
+    </script>
+</body>
+
+</html>
